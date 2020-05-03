@@ -2,7 +2,6 @@ package com.carlsberg_stack.architecture_module_library;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
