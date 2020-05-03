@@ -1,0 +1,2 @@
+include ':app', ':architecture-module-library'
+rootProject.name='architecture-module'

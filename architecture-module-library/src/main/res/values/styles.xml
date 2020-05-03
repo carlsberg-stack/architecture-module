@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+    <style name="Appearance.App.Dailog" parent="Theme.AppCompat.Dialog">
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:windowTitleStyle">@style/Appearance.App.Dailog.TitleStyle</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:windowMinWidthMajor">60%</item>
+        <item name="android:windowMinWidthMinor">60%</item>
+    </style>
+
+    <style name="Appearance.App.Dailog.TitleStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+</resources>
