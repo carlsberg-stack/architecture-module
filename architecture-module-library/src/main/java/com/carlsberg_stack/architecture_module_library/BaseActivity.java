@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -17,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.List;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -93,19 +96,28 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void showAlert(int title, String message) {
-        new AlertDialog.Builder(this, R.style.Appearance_App_Dailog).setTitle(title).setMessage(message).setNegativeButton(R.string.cancel, null).create().show();
+        new AlertDialog.Builder(this, R.style.Appearance_App_Dialog).setTitle(title).setMessage(message).setNegativeButton(R.string.cancel, null).create().show();
     }
 
     protected void showAlert(String message) {
-        new AlertDialog.Builder(this, R.style.Appearance_App_Dailog).setTitle(R.string.alert).setMessage(message).setNegativeButton(R.string.cancel, null).create().show();
+        new AlertDialog.Builder(this, R.style.Appearance_App_Dialog).setTitle(R.string.alert).setMessage(message).setNegativeButton(R.string.cancel, null).create().show();
     }
 
     protected void showListDialog(int title, int items, DialogInterface.OnClickListener listener) {
-        new AlertDialog.Builder(this, R.style.Appearance_App_Dailog).setItems(items, listener).setTitle(title).create().show();
+        new AlertDialog.Builder(this, R.style.Appearance_App_Dialog).setItems(items, listener).setTitle(title).create().show();
+    }
+
+    protected <T> void showListDialog(List<T> items, DialogInterface.OnClickListener listener) {
+        final ArrayAdapter<T> arrayAdapter = new ArrayAdapter<>(this, R.layout.textview, items);
+        new AlertDialog.Builder(this, R.style.Appearance_App_Dialog)
+                .setCancelable(true)
+                .setTitle(R.string.select)
+                .setAdapter(arrayAdapter, listener)
+                .create().show();
     }
 
     protected void showConfirmDialog(int message, int textId, DialogInterface.OnClickListener listener) {
-        new AlertDialog.Builder(this, R.style.Appearance_App_Dailog)
+        new AlertDialog.Builder(this, R.style.Appearance_App_Dialog)
                 .setCancelable(false)
                 .setTitle(R.string.confirm)
                 .setMessage(message)
@@ -114,8 +126,4 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .create().show();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

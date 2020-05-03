@@ -12,9 +12,6 @@ public abstract class MVVMActivity<T extends BaseViewModel> extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.mvvm = createViewModel();
-//        if (this.mvvm != null) {
-//            this.presenter.attachView(this);
-//        }
         super.onCreate(savedInstanceState);
     }
 
@@ -27,9 +24,6 @@ public abstract class MVVMActivity<T extends BaseViewModel> extends BaseActivity
 
     @Override
     protected void onDestroy() {
-//        if (this.presenter != null) {
-//            this.presenter.detachView();
-//        }
         super.onDestroy();
     }
 }

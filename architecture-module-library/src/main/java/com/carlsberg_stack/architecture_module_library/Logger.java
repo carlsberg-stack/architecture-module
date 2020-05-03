@@ -3,10 +3,10 @@ package com.carlsberg_stack.architecture_module_library;
 import android.util.Log;
 
 
-public class Logg {
+public class Logger {
 
     public static final boolean DEBUG = BuildConfig.DEBUG;
-    private final static String TAG = "Logg";
+    private final static String TAG = "Logger";
 
     /*E*/
     public static void e(String error) {
@@ -41,8 +41,6 @@ public class Logg {
         if (DEBUG) {
             if (e != null)
                 e.printStackTrace();
-        } else {
-//            Crashlytics.logException(e);
         }
     }
 
@@ -50,8 +48,6 @@ public class Logg {
         if (DEBUG) {
             if (exception != null)
                 exception.printStackTrace();
-        } else {
-//            Crashlytics.logException(exception);
         }
     }
 

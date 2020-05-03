@@ -22,10 +22,6 @@ public abstract class MVVMFragment<T extends BaseViewModel> extends BaseFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        if (this.mvvm != null) {
-//            this.presenter.attachView(this);
-//        }
-
     }
 
     private T createViewModel() {
@@ -39,7 +35,6 @@ public abstract class MVVMFragment<T extends BaseViewModel> extends BaseFragment
     public void onDetach() {
         mvvm = null;
         super.onDetach();
-
     }
 
 
