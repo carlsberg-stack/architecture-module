@@ -19,7 +19,7 @@ Change the app Level build file (Add Dependency)
 
 ```bash
 dependencies {
-	        implementation 'com.github.carlsberg-stack:architecture-module:20.5.4'
+	        implementation 'com.github.carlsberg-stack:architecture-module:20.5.9'
 	}
 ```
 ## Use Cases
@@ -81,7 +81,7 @@ public class YourViewModel extends BaseViewModel{
 
 ### For Fragment
 ```bash
-public class MainMainFragment extends MVVMFRAGMENT<youemvvm, your interfice if you needed[It have to extend base coomunicator]> {
+public class MainMainFragment extends MVVMFRAGMENT<youemvvm, your interface if you needed[It has to extend base communicator (You can refer example)]> {
 
     @Override
     protected int getContentView() {
