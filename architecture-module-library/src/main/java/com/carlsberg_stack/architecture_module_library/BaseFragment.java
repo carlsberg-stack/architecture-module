@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public abstract class BaseFragment<T extends BaseCommunicator> extends Fragment {
+public abstract class BaseFragment<C extends BaseCommunicator> extends Fragment {
 
-    protected T communicator;
+    protected C communicator;
     protected SharedPreferences defaultPreference;
     protected View view;
 
@@ -36,17 +36,19 @@ public abstract class BaseFragment<T extends BaseCommunicator> extends Fragment 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        communicator = (T) context;
+        communicator = (C) context;
 
     }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getContentView(), container, false);
+        bindViews(view);
         return view;
     }
+
+    protected abstract void bindViews(View view);
 
     protected abstract int getContentView();
 

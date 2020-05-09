@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public abstract class MVVMDialogFragment<T extends BaseViewModel> extends BaseDialogFragment {
+public abstract class MVVMDialogFragment<T extends BaseViewModel, C extends BaseCommunicator> extends BaseDialogFragment<C> {
 
 
     protected T mvvm;

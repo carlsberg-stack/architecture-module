@@ -5,49 +5,49 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.carlsberg_stack.architecture_module_library.BaseActivity;
+import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+public class MainActivity extends BaseActivity implements MainFragmentInterface {
 
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
     }
 
-    public void clicked(View view) {
-        switch (view.getId()){
-            case R.id.test_dialog_1:
-                showListDialog(R.string.alert, R.array.test, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+    @Override
+    protected void bindViews() {
 
-                    }
-                });
+    }
+
+    @Override
+    public void call() {
+        ToastMessage.makeDebugToast(getApplicationContext(),"call").show();
+    }
+
+
+    public void toast(View view) {
+        switch (view.getId()) {
+            case R.id.simple_toast:
+                ToastMessage.makeSimpleToast(getApplicationContext(), getString(R.string.app_name)).show();
                 break;
-         case R.id.test_dialog_2:
-             List<String> strings=new ArrayList<>();
-             strings.add("Test 1");
-             strings.add("Test 1");
-             strings.add("Test 1");
-             strings.add("Test 1");
-             strings.add("Test 1");
-             showListDialog(strings, new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialog, int which) {
-
-                 }
-             });
+            case R.id.warning_toast:
+                ToastMessage.makeWarningToast(getApplicationContext(), getString(R.string.app_name)).show();
+                break;
+            case R.id.error_toast:
+                ToastMessage.makeErrorToast(getApplicationContext(), getString(R.string.app_name)).show();
+                break;
+            case R.id.success_toast:
+                ToastMessage.makeSuccessToast(getApplicationContext(), getString(R.string.app_name)).show();
+                break;
+            case R.id.info_toast:
+                ToastMessage.makeInfoToast(getApplicationContext(), getString(R.string.app_name)).show();
                 break;
         }
-
     }
 }

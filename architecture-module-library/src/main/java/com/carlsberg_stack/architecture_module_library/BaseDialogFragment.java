@@ -27,8 +27,11 @@ public abstract class BaseDialogFragment<T extends BaseCommunicator> extends Dia
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getContentView(), container, false);
+        bindViews(view);
         return view;
     }
+
+    protected abstract void bindViews(View view);
 
     protected abstract int getContentView();
 

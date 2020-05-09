@@ -15,4 +15,19 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
+    <style name="Appearance_App_TextStyleLight_Small">
+        <item name="android:textColor">@color/lightTextColor</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="Appearance_App_TextStyleLight_Medium">
+        <item name="android:textColor">@color/lightTextColor</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="Appearance_App_TextStyleLight_Largr">
+        <item name="android:textColor">@color/lightTextColor</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
 </resources>

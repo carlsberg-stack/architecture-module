@@ -4,21 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
+    <fragment
+        class="com.carlsberg_stack.archetecture_module.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/main"
+        android:layout_weight="1" />
     <Button
-        android:id="@+id/test_dialog_1"
+        android:id="@+id/simple_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test Dialog 1"
-        android:onClick="clicked"/>
+        android:onClick="toast"
+        android:text="Simple Toast"/>
 
     <Button
-        android:id="@+id/test_dialog_2"
+        android:id="@+id/warning_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test Dialog 2"
-        android:onClick="clicked" />
+        android:onClick="toast"
+        android:text="warning Toast"/>
+
+    <Button
+        android:id="@+id/error_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toast"
+        android:text="error Toast"/>
+
+    <Button
+        android:id="@+id/success_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toast"
+        android:text="success Toast"/>
+
+    <Button
+        android:id="@+id/info_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toast"
+        android:text="info Toast"/>
 
 </LinearLayout>
