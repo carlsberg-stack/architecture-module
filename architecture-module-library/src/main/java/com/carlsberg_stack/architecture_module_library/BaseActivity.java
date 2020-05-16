@@ -260,6 +260,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseComm
     }
 
     @Override
+    public <T> void frg_showListDialog(int style, List<T> items, DialogInterface.OnClickListener listener) {
+        showListDialog(style, NONE, false, NONE, items, listener);
+    }
+
+    @Override
     public void frg_showListDialog(int style, int title, int items, DialogInterface.OnClickListener listener) {
         showListDialog(style, title, items, listener);
     }

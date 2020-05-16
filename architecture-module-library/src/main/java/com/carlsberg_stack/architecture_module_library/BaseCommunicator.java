@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 public interface BaseCommunicator {
 
     void frg_startActivity(Class<? extends BaseActivity> activityClass);
@@ -83,7 +85,10 @@ public interface BaseCommunicator {
                             int items,
                             DialogInterface.OnClickListener listener);
 
-    <T> void frg_showListDialog(java.util.List<T> items,
+    <T> void frg_showListDialog(List<T> items,
+                                DialogInterface.OnClickListener listener);
+
+    <T> void frg_showListDialog(int style,List<T> items,
                                 DialogInterface.OnClickListener listener);
 
     <T> void frg_showListDialog(int style,
