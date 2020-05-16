@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public abstract class MVVMPreferenceFragment<T extends BaseViewModel> extends PreferenceBaseFragment {
+public abstract class MVVMPreferenceFragment<T extends BaseViewModel,C extends BaseCommunicator> extends PreferenceBaseFragment<C> {
 
 
     protected T mvvm;

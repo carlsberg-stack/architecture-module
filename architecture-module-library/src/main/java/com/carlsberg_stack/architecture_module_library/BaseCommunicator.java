@@ -46,9 +46,26 @@ public interface BaseCommunicator {
                          @NonNull
                                  BaseFragment fragment);
 
+    void frg_replaceFragment(@NonNull
+                                     BaseFragment fragment);
+
+    void frg_replaceFragment(@NonNull
+                                     BaseFragment fragment,
+                             String tag);
+
+    void frg_addFragment(@NonNull
+                                 BaseFragment fragment,
+                         String tag);
+
+    void frg_addFragment(@NonNull
+                                 BaseFragment fragment);
+
     void frg_showDialogFragment(@NonNull
                                         BaseDialogFragment fragment,
                                 String tag);
+
+    void frg_showDialogFragment(@NonNull
+                                        BaseDialogFragment fragment);
 
     void frg_showAlert(int title,
                        String message);
@@ -56,6 +73,9 @@ public interface BaseCommunicator {
     void frg_showAlert(String message);
 
     void frg_showListDialog(int items,
+                            DialogInterface.OnClickListener listener);
+
+    void frg_showListDialog(int style,int items,
                             DialogInterface.OnClickListener listener);
 
     void frg_showListDialog(int style,

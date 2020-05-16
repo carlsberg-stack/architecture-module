@@ -207,9 +207,36 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseComm
     }
 
     @Override
+    public void frg_replaceFragment(@NonNull BaseFragment fragment) {
+        replaceFragment(getContainerViewId(), fragment);
+    }
+
+    protected abstract int getContainerViewId();
+
+    @Override
+    public void frg_replaceFragment(@NonNull BaseFragment fragment, String tag) {
+        replaceFragment(getContainerViewId(), fragment, tag);
+    }
+
+    @Override
+    public void frg_addFragment(@NonNull BaseFragment fragment, String tag) {
+        addFragment(getContainerViewId(), fragment, tag);
+
+    }
+
+    @Override
+    public void frg_addFragment(@NonNull BaseFragment fragment) {
+        addFragment(getContainerViewId(), fragment);
+    }
+
+    @Override
     public void frg_showDialogFragment(@NonNull BaseDialogFragment fragment, String tag) {
         showDialogFragment(fragment, tag);
+    }
 
+    @Override
+    public void frg_showDialogFragment(@NonNull BaseDialogFragment fragment) {
+        showDialogFragment(fragment, null);
     }
 
     @Override
@@ -225,6 +252,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseComm
     @Override
     public void frg_showListDialog(int items, DialogInterface.OnClickListener listener) {
         showListDialog(items, listener);
+    }
+
+    @Override
+    public void frg_showListDialog(int style, int items, DialogInterface.OnClickListener listener) {
+        showListDialog(style,NONE,items, listener);
     }
 
     @Override
