@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public abstract class BaseFragment<C extends BaseCommunicator> extends Fragment {
+public abstract class CarlsBaseFragment<C extends CarlsBaseCommunicator> extends Fragment {
 
     protected C communicator;
     protected SharedPreferences defaultPreference;

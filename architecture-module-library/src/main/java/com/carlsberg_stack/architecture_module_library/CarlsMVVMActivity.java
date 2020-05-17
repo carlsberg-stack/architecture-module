@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public abstract class MVVMActivity<T extends BaseViewModel> extends BaseActivity {
+public abstract class CarlsMVVMActivity<T extends CarlsBaseViewModel> extends CarlsBaseActivity {
 
     protected T mvvm;
 

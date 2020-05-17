@@ -1,19 +1,11 @@
 package com.carlsberg_stack.archetecture_module;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.carlsberg_stack.architecture_module_library.BaseActivity;
+import com.carlsberg_stack.architecture_module_library.CarlsBaseActivity;
 import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends BaseActivity implements MainFragmentInterface {
+public class MainActivity extends CarlsBaseActivity implements MainFragmentInterface {
 
     @Override
     protected int getContentView() {
@@ -47,6 +39,15 @@ public class MainActivity extends BaseActivity implements MainFragmentInterface 
                 break;
             case R.id.info_toast:
                 ToastMessage.makeInfoToast(getApplicationContext(), getString(R.string.app_name)).show();
+                break;
+            case R.id.show_list:
+                carls_showListDialog(R.array.test,null);
+                break;
+            case R.id.show_alert:
+                carls_showAlert(R.string.app_name);
+                break;
+            case R.id.show_confirm:
+                carls_showConfirmDialog(R.string.app_name,null);
                 break;
         }
     }

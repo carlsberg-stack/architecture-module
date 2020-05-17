@@ -5,12 +5,10 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.BaseCommunicator;
-import com.carlsberg_stack.architecture_module_library.BaseDialogFragment;
-import com.carlsberg_stack.architecture_module_library.BaseFragment;
-import com.carlsberg_stack.architecture_module_library.MVVMFragment;
+import com.carlsberg_stack.architecture_module_library.CarlsBaseCommunicator;
+import com.carlsberg_stack.architecture_module_library.CarlsMVVMFragment;
 
-public class MainFragment extends MVVMFragment<MyMvvm,MainFragmentInterface> {
+public class MainFragment extends CarlsMVVMFragment<MyMvvm,MainFragmentInterface> {
     @Override
     protected void bindViews(View view) {
 
@@ -18,7 +16,7 @@ public class MainFragment extends MVVMFragment<MyMvvm,MainFragmentInterface> {
 
     @Override
     protected int getContentView() {
-        return R.layout.textview;
+        return R.layout.carls_textview;
     }
 
     @Override
@@ -33,6 +31,6 @@ public class MainFragment extends MVVMFragment<MyMvvm,MainFragmentInterface> {
     }
 }
 
-interface MainFragmentInterface extends BaseCommunicator {
+interface MainFragmentInterface extends CarlsBaseCommunicator {
     void call();
 }

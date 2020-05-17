@@ -3,10 +3,10 @@ package com.carlsberg_stack.architecture_module_library;
 import android.util.Log;
 
 
-public class Logger {
+public class CarlsLogger {
 
     public static final boolean DEBUG = BuildConfig.DEBUG;
-    private final static String TAG = "Logger";
+    private final static String TAG = "CarlsLogger";
 
     /*E*/
     public static void e(String error) {

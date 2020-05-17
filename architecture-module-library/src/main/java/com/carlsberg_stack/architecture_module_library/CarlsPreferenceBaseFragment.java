@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceFragmentCompat;
 
 
-public abstract class PreferenceBaseFragment<T extends BaseCommunicator> extends PreferenceFragmentCompat {
+public abstract class CarlsPreferenceBaseFragment<T extends CarlsBaseCommunicator> extends PreferenceFragmentCompat {
 
     protected T communicator;
     protected SharedPreferences defaultPreference;

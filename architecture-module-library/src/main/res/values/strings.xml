@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">architecture-module-library</string>
-    <string name="alert">Alert</string>
-    <string name="confirm">Confirm</string>
-    <string name="cancel">Cancel</string>
-    <string name="select">Select</string>
-    <string name="okay">Okay</string>
+    <string name="carls_alert">Alert</string>
+    <string name="carls_confirm">Confirm</string>
+    <string name="carls_cancel">Cancel</string>
+    <string name="carls_select">Select</string>
+    <string name="carls_okay">Okay</string>
 </resources>

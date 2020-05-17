@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 
-public abstract class BaseDialogFragment<T extends BaseCommunicator> extends DialogFragment {
+public abstract class CarlsBaseDialogFragment<T extends CarlsBaseCommunicator> extends DialogFragment {
 
-    protected static final String TAG = BaseDialogFragment.class.getSimpleName();
+    protected static final String TAG = CarlsBaseDialogFragment.class.getSimpleName();
     protected T communicator;
     protected View view;
 

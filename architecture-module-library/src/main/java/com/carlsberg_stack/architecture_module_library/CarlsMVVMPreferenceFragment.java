@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 
-public abstract class MVVMFragment<T extends BaseViewModel, C extends BaseCommunicator> extends BaseFragment<C> {
+public abstract class CarlsMVVMPreferenceFragment<T extends CarlsBaseViewModel,C extends CarlsBaseCommunicator> extends CarlsPreferenceBaseFragment<C> {
 
 
     protected T mvvm;
@@ -35,7 +35,7 @@ public abstract class MVVMFragment<T extends BaseViewModel, C extends BaseCommun
     public void onDetach() {
         mvvm = null;
         super.onDetach();
-    }
 
+    }
 
 }
