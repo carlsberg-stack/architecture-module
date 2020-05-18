@@ -19,12 +19,6 @@ public class MainActivity extends CarlsBroadcastActivity implements MainFragment
     };
 
     @Override
-    protected void registerBroadcastReceiver() {
-        registerBroadcastReceiver(RegisterBroadcastAction.ON_RESUME,UnregisterBroadcastAction.ON_STOP,broadcastReceiver,new IntentFilter());
-        registerBroadcastReceiver(RegisterBroadcastAction.ON_CREATE,UnregisterBroadcastAction.ON_DESTROY,broadcastReceiver,new IntentFilter());
-    }
-
-    @Override
     protected int getContentView() {
         return R.layout.activity_main;
     }
@@ -69,5 +63,11 @@ public class MainActivity extends CarlsBroadcastActivity implements MainFragment
                 carls_showConfirmDialog(R.string.app_name,null);
                 break;
         }
+    }
+
+    @Override
+    protected void carls_indexBroadcastReceiver() {
+        carls_registerBroadcastReceiver(RegisterBroadcastAction.CARLS_ON_RESUME,UnregisterBroadcastAction.CARLS_ON_STOP,broadcastReceiver,new IntentFilter());
+        carls_registerBroadcastReceiver(RegisterBroadcastAction.CARLS_ON_CREATE,UnregisterBroadcastAction.CARLS_ON_DESTROY,broadcastReceiver,new IntentFilter());
     }
 }

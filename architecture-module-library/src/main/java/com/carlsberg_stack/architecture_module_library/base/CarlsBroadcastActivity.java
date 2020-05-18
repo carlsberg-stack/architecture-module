@@ -16,168 +16,168 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class CarlsBroadcastActivity extends CarlsActivity implements CarlsBroadcastCommunicator{
+public abstract class CarlsBroadcastActivity extends CarlsActivity implements CarlsBroadcastCommunicator {
 
-    private Map<String, BroadcastReceiverModel> broadcastReceiverMap = new HashMap<>();
-    private Set<String> onCreateList = new HashSet<>();
-    private Set<String> onStartList = new HashSet<>();
-    private Set<String> onResumeList = new HashSet<>();
-    private Set<String> onPauseList = new HashSet<>();
-    private Set<String> onStopList = new HashSet<>();
-    private Set<String> onDestroyList = new HashSet<>();
+    private Map<String, BroadcastReceiverModel> carls_broadcastReceiverMap = new HashMap<>();
+    private Set<String> carls_onCreateList = new HashSet<>();
+    private Set<String> carls_onStartList = new HashSet<>();
+    private Set<String> carls_onResumeList = new HashSet<>();
+    private Set<String> carls_onPauseList = new HashSet<>();
+    private Set<String> carls_onStopList = new HashSet<>();
+    private Set<String> carls_onDestroyList = new HashSet<>();
 
-    protected abstract void registerBroadcastReceiver();
+    protected abstract void carls_indexBroadcastReceiver();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        registerBroadcastReceiver();
-        register(onCreateList);
+        carls_indexBroadcastReceiver();
+        carls_register(carls_onCreateList);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        register(onStartList);
+        carls_register(carls_onStartList);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        register(onResumeList);
+        carls_register(carls_onResumeList);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unregister(onPauseList);
+        carls_unregister(carls_onPauseList);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unregister(onStopList);
+        carls_unregister(carls_onStopList);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregister(onDestroyList);
-        broadcastReceiverMap = null;
-        onCreateList = null;
-        onStartList = null;
-        onResumeList = null;
-        onPauseList = null;
-        onStopList = null;
-        onDestroyList = null;
+        carls_unregister(carls_onDestroyList);
+        carls_broadcastReceiverMap = null;
+        carls_onCreateList = null;
+        carls_onStartList = null;
+        carls_onResumeList = null;
+        carls_onPauseList = null;
+        carls_onStopList = null;
+        carls_onDestroyList = null;
     }
 
-    protected void registerLocalBroadcastReceiver(RegisterBroadcastAction register, UnregisterBroadcastAction unregister, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+    protected void carls_registerLocalBroadcastReceiver(RegisterBroadcastAction register, UnregisterBroadcastAction unregister, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
         String name = broadcastReceiver.getClass().getName();
-        if (canRegister(name)) {
-            broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, true));
-            register(register, broadcastReceiver, intentFilter, name);
-            unregister(unregister, name);
+        if (carls_canRegister(name)) {
+            carls_broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, true));
+            carls_register(register, broadcastReceiver, intentFilter, name);
+            carls_unregister(unregister, name);
         }
     }
 
-    protected void registerBroadcastReceiver(RegisterBroadcastAction register, UnregisterBroadcastAction unregister, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+    protected void carls_registerBroadcastReceiver(RegisterBroadcastAction register, UnregisterBroadcastAction unregister, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
         String name = broadcastReceiver.getClass().getName();
-        if (canRegister(name)) {
-            broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, false));
-            register(register, broadcastReceiver, intentFilter, name);
-            unregister(unregister, name);
+        if (carls_canRegister(name)) {
+            carls_broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, false));
+            carls_register(register, broadcastReceiver, intentFilter, name);
+            carls_unregister(unregister, name);
         }
     }
 
 
     /*register and unregister*/
-    private void registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+    protected void carls_registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(broadcastReceiver, intentFilter);
     }
 
-    private void unRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
+    protected void carls_unRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(broadcastReceiver);
     }
 
-    private void registerBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+    protected void carls_registerBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
         registerReceiver(broadcastReceiver, intentFilter);
     }
 
-    private void unRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
+    protected void carls_unRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
         unregisterReceiver(broadcastReceiver);
     }
 
-    private boolean canRegister(String name) {
-        if (broadcastReceiverMap.containsKey(name)) {
+    private boolean carls_canRegister(String name) {
+        if (carls_broadcastReceiverMap.containsKey(name)) {
             CarlsLogger.w("Broadcast receiver is already added, Please add action in intenet filter");
             return false;
         }
         return true;
     }
 
-    private void register(RegisterBroadcastAction register, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, String name) {
+    private void carls_register(RegisterBroadcastAction register, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, String name) {
         switch (register) {
-            case ON_CREATE:
-                onCreateList.add(name);
+            case CARLS_ON_CREATE:
+                carls_onCreateList.add(name);
                 break;
-            case ON_START:
-                onStartList.add(name);
+            case CARLS_ON_START:
+                carls_onStartList.add(name);
                 break;
-            case ON_RESUME:
-                onResumeList.add(name);
+            case CARLS_ON_RESUME:
+                carls_onResumeList.add(name);
                 break;
         }
     }
 
-    private void register(Set<String> receivers) {
-        if(receivers.isEmpty())
+    private void carls_register(Set<String> receivers) {
+        if (receivers.isEmpty())
             return;
         BroadcastReceiverModel broadcastReceiverModel;
-        for (String receiver:
+        for (String receiver :
                 receivers) {
-            broadcastReceiverModel = broadcastReceiverMap.get(receiver);
-            if(broadcastReceiverModel.isLocal())
-                registerLocalBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver(),broadcastReceiverModel.getIntentFilter());
+            broadcastReceiverModel = carls_broadcastReceiverMap.get(receiver);
+            if (broadcastReceiverModel.isLocal())
+                carls_registerLocalBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver(), broadcastReceiverModel.getIntentFilter());
             else
-                registerBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver(),broadcastReceiverModel.getIntentFilter());
+                carls_registerBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver(), broadcastReceiverModel.getIntentFilter());
         }
     }
 
-    private void unregister(UnregisterBroadcastAction unregister, String name) {
+    private void carls_unregister(UnregisterBroadcastAction unregister, String name) {
         switch (unregister) {
-            case ON_PAUSE:
-                onPauseList.add(name);
+            case CARLS_ON_PAUSE:
+                carls_onPauseList.add(name);
                 break;
-            case ON_STOP:
-                onStopList.add(name);
+            case CARLS_ON_STOP:
+                carls_onStopList.add(name);
                 break;
-            case ON_DESTROY:
-                onDestroyList.add(name);
+            case CARLS_ON_DESTROY:
+                carls_onDestroyList.add(name);
                 break;
         }
     }
 
-    private void unregister(Set<String> receivers) {
-        if(receivers.isEmpty())
+    private void carls_unregister(Set<String> receivers) {
+        if (receivers.isEmpty())
             return;
         BroadcastReceiverModel broadcastReceiverModel;
-        for (String receiver:
+        for (String receiver :
                 receivers) {
-            broadcastReceiverModel = broadcastReceiverMap.get(receiver);
-            if(broadcastReceiverModel.isLocal())
-                unRegisterLocalBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver());
+            broadcastReceiverModel = carls_broadcastReceiverMap.get(receiver);
+            if (broadcastReceiverModel.isLocal())
+                carls_unRegisterLocalBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver());
             else
-                unRegisterBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver());
+                carls_unRegisterBroadcastReceiver(broadcastReceiverModel.getBroadcastReceiver());
         }
     }
 
     public enum RegisterBroadcastAction {
-        ON_CREATE, ON_START, ON_RESUME
+        CARLS_ON_CREATE, CARLS_ON_START, CARLS_ON_RESUME
     }
 
     public enum UnregisterBroadcastAction {
-        ON_PAUSE, ON_STOP, ON_DESTROY
+        CARLS_ON_PAUSE, CARLS_ON_STOP, CARLS_ON_DESTROY
     }
 }
