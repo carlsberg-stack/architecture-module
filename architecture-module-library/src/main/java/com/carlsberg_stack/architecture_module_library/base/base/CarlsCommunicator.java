@@ -1,21 +1,20 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.base.base;
 
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsActivity;
 
 import java.util.List;
 
-public interface CarlsBaseCommunicator {
+public interface CarlsCommunicator {
 
     /*activity*/
-    void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass);
-    void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass,
+    void frg_startActivity(Class<? extends CarlsActivity> activityClass);
+    void frg_startActivity(Class<? extends CarlsActivity> activityClass,
                            Bundle bundle);
-    void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass,
+    void frg_startActivity(Class<? extends CarlsActivity> activityClass,
                            Bundle bundle,
                            int flags);
 
@@ -24,14 +23,6 @@ public interface CarlsBaseCommunicator {
     void frg_showToast(int msg);
 
     boolean frg_isInternetAvailable();
-
-    /*fragments*/
-     void frg_replaceFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment) ;
-     void frg_replaceFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) ;
-     void frg_addFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) ;
-     void frg_addFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment) ;
-     void frg_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment, String tag) ;
-     void frg_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment) ;
 
     /*list dialog*/
      void frg_showListDialog(int items, DialogInterface.OnClickListener listener);

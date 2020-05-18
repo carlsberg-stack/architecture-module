@@ -4,9 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import com.carlsberg_stack.architecture_module_library.CarlsBaseViewModel;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
-public class MyMvvm extends CarlsBaseViewModel {
+public class MyMvvm extends CarlsViewModel {
 
     public MyMvvm(@NonNull Application application) {
         super(application);

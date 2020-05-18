@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.pattern.mvvm;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,8 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
-public abstract class CarlsMVVMPreferenceFragment<T extends CarlsBaseViewModel,C extends CarlsBaseCommunicator> extends CarlsPreferenceBaseFragment<C> {
+
+public abstract class CarlsMvvmFragment<T extends CarlsViewModel, C extends CarlsCommunicator> extends CarlsFragment<C> {
 
 
     protected T mvvm;
@@ -35,7 +39,7 @@ public abstract class CarlsMVVMPreferenceFragment<T extends CarlsBaseViewModel,C
     public void onDetach() {
         mvvm = null;
         super.onDetach();
-
     }
+
 
 }

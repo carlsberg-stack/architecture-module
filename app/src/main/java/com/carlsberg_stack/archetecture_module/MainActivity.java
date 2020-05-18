@@ -1,11 +1,28 @@
 package com.carlsberg_stack.archetecture_module;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.View;
 
-import com.carlsberg_stack.architecture_module_library.CarlsBaseActivity;
+import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
 import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
-public class MainActivity extends CarlsBaseActivity implements MainFragmentInterface {
+public class MainActivity extends CarlsBroadcastActivity implements MainFragmentInterface {
+
+    BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+        }
+    };
+
+    @Override
+    protected void registerBroadcastReceiver() {
+        registerBroadcastReceiver(RegisterBroadcastAction.ON_RESUME,UnregisterBroadcastAction.ON_STOP,broadcastReceiver,new IntentFilter());
+        registerBroadcastReceiver(RegisterBroadcastAction.ON_CREATE,UnregisterBroadcastAction.ON_DESTROY,broadcastReceiver,new IntentFilter());
+    }
 
     @Override
     protected int getContentView() {
@@ -16,6 +33,8 @@ public class MainActivity extends CarlsBaseActivity implements MainFragmentInter
     protected void bindViews() {
 
     }
+
+
 
     @Override
     public void call() {

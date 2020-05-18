@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.base.base;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,12 +17,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.carlsberg_stack.architecture_module_library.R;
 import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
 import java.util.List;
 
 
-public abstract class CarlsBaseActivity extends AppCompatActivity implements CarlsBaseCommunicator {
+public abstract class CarlsActivity extends AppCompatActivity implements CarlsCommunicator {
 
 
     private final static int CARLS_NONE = -1;
@@ -41,13 +42,13 @@ public abstract class CarlsBaseActivity extends AppCompatActivity implements Car
     protected abstract void bindViews();
 
     /*activities*/
-    protected void carls_startActivity(Class<? extends CarlsBaseActivity> activityClass) {
+    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass) {
         carls_startActivity(activityClass, null, CARLS_NONE);
     }
-    protected void carls_startActivity(Class<? extends CarlsBaseActivity> activityClass, Bundle bundle) {
+    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle) {
         carls_startActivity(activityClass, bundle, CARLS_NONE);
     }
-    protected void carls_startActivity(Class<? extends CarlsBaseActivity> activityClass, Bundle bundle, int flags) {
+    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
         Intent intent = new Intent(this, activityClass);
         if (flags != CARLS_NONE)
             intent.setFlags(flags);
@@ -57,24 +58,24 @@ public abstract class CarlsBaseActivity extends AppCompatActivity implements Car
     }
 
     /*fragments*/
-    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment) {
+    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(containerViewId, fragment).commit();
     }
-    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) {
+    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
         getSupportFragmentManager().beginTransaction().replace(containerViewId, fragment, tag).addToBackStack(tag).commit();
     }
-    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) {
+    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
         getSupportFragmentManager().beginTransaction().add(containerViewId, fragment).addToBackStack(tag).commit();
     }
-    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsBaseFragment fragment) {
+    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
         getSupportFragmentManager().beginTransaction().add(containerViewId, fragment).commit();
     }
-    protected void carls_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment, String tag) {
+    protected void carls_showDialogFragment(@NonNull CarlsDialogFragment fragment, String tag) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(tag);
         fragment.show(ft, tag);
     }
-    protected void carls_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment) {
+    protected void carls_showDialogFragment(@NonNull CarlsDialogFragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(fragment.getClass().getName());
         fragment.show(ft, fragment.getClass().getName());
@@ -177,17 +178,17 @@ public abstract class CarlsBaseActivity extends AppCompatActivity implements Car
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass) {
+    public void frg_startActivity(Class<? extends CarlsActivity> activityClass) {
         carls_startActivity(activityClass);
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass, Bundle bundle) {
+    public void frg_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle) {
         carls_startActivity(activityClass,bundle);
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsBaseActivity> activityClass, Bundle bundle, int flags) {
+    public void frg_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
         carls_startActivity(activityClass,bundle,flags);
     }
 
@@ -204,36 +205,6 @@ public abstract class CarlsBaseActivity extends AppCompatActivity implements Car
     @Override
     public boolean frg_isInternetAvailable() {
         return isInternetAvailable();
-    }
-
-    @Override
-    public void frg_replaceFragment(int containerViewId, @NonNull CarlsBaseFragment fragment) {
-        carls_replaceFragment(containerViewId,fragment);
-    }
-
-    @Override
-    public void frg_replaceFragment(int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) {
-        carls_replaceFragment(containerViewId,fragment,tag);
-    }
-
-    @Override
-    public void frg_addFragment(int containerViewId, @NonNull CarlsBaseFragment fragment, String tag) {
-        carls_addFragment(containerViewId,fragment,tag);
-    }
-
-    @Override
-    public void frg_addFragment(int containerViewId, @NonNull CarlsBaseFragment fragment) {
-        carls_addFragment(containerViewId,fragment);
-    }
-
-    @Override
-    public void frg_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment, String tag) {
-        carls_showDialogFragment(fragment,tag);
-    }
-
-    @Override
-    public void frg_showDialogFragment(@NonNull CarlsBaseDialogFragment fragment) {
-        carls_showDialogFragment(fragment);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.pattern.mvvm;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,8 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsDialogFragment;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
-public abstract class CarlsMVVMFragment<T extends CarlsBaseViewModel, C extends CarlsBaseCommunicator> extends CarlsBaseFragment<C> {
+
+public abstract class CarlsMvvmDialogFragment<T extends CarlsViewModel, C extends CarlsCommunicator> extends CarlsDialogFragment<C> {
 
 
     protected T mvvm;
@@ -18,10 +22,10 @@ public abstract class CarlsMVVMFragment<T extends CarlsBaseViewModel, C extends 
         this.mvvm = createViewModel();
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
     }
 
     private T createViewModel() {
@@ -30,12 +34,10 @@ public abstract class CarlsMVVMFragment<T extends CarlsBaseViewModel, C extends 
 
     protected abstract Class<T> createViewModelClass();
 
-
     @Override
     public void onDetach() {
         mvvm = null;
         super.onDetach();
+
     }
-
-
 }

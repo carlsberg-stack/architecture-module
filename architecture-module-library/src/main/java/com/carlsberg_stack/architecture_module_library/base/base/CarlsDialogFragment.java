@@ -1,46 +1,29 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.base.base;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 
-public abstract class CarlsBaseFragment<C extends CarlsBaseCommunicator> extends Fragment {
+public abstract class CarlsDialogFragment<T extends CarlsCommunicator> extends DialogFragment {
 
-    protected C communicator;
-    protected SharedPreferences defaultPreference;
+    protected static final String TAG = CarlsDialogFragment.class.getSimpleName();
+    protected T communicator;
     protected View view;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        defaultPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
 
     @SuppressWarnings("unchecked")
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        communicator = (C) context;
-
+        communicator = (T) context;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getContentView(), container, false);

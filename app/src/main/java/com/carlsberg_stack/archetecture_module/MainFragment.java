@@ -5,10 +5,10 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.CarlsBaseCommunicator;
-import com.carlsberg_stack.architecture_module_library.CarlsMVVMFragment;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
 
-public class MainFragment extends CarlsMVVMFragment<MyMvvm,MainFragmentInterface> {
+public class MainFragment extends CarlsFragment {
     @Override
     protected void bindViews(View view) {
 
@@ -22,15 +22,15 @@ public class MainFragment extends CarlsMVVMFragment<MyMvvm,MainFragmentInterface
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        communicator.call();
+//        communicator.call();
     }
 
-    @Override
-    protected Class<MyMvvm> createViewModelClass() {
-        return MyMvvm.class;
-    }
+//    @Override
+//    protected Class<MyMvvm> createViewModelClass() {
+//        return MyMvvm.class;
+//    }
 }
 
-interface MainFragmentInterface extends CarlsBaseCommunicator {
+interface MainFragmentInterface extends CarlsCommunicator {
     void call();
 }

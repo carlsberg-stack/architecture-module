@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.base.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceFragmentCompat;
 
 
-public abstract class CarlsPreferenceBaseFragment<T extends CarlsBaseCommunicator> extends PreferenceFragmentCompat {
+public abstract class CarlsPreferenceFragment<T extends CarlsCommunicator> extends PreferenceFragmentCompat {
 
     protected T communicator;
     protected SharedPreferences defaultPreference;

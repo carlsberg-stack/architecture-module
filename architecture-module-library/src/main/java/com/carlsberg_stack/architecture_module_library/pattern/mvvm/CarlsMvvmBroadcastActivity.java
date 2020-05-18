@@ -1,11 +1,14 @@
-package com.carlsberg_stack.architecture_module_library;
+package com.carlsberg_stack.architecture_module_library.pattern.mvvm;
 
 import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
-public abstract class CarlsMVVMActivity<T extends CarlsBaseViewModel> extends CarlsBaseActivity {
+
+public abstract class CarlsMvvmBroadcastActivity<T extends CarlsViewModel> extends CarlsBroadcastActivity {
 
     protected T mvvm;
 
