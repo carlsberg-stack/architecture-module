@@ -8,7 +8,7 @@ import com.carlsberg_stack.architecture_module_library.base.base.CarlsDialogFrag
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
 import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastCommunicator;
 
-public interface CarlsFragmentCommunicator extends CarlsCommunicator {
+public interface CarlsFragmentBroadcastCommunicator extends CarlsBroadcastCommunicator {
     /*fragments*/
     void frg_replaceFragment(@NonNull CarlsFragment fragment) ;
     void frg_replaceFragment(@NonNull CarlsFragment fragment, String tag) ;

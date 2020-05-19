@@ -5,10 +5,9 @@ import androidx.annotation.NonNull;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsActivity;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsDialogFragment;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
-import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 
 
-public abstract class CarlsFragmentActivity extends CarlsActivity implements CarlsFragmentCommunicator {
+public abstract class CarlsFragmentBroadcastActivity extends CarlsActivity implements CarlsFragmentBroadcastCommunicator{
 
     @Override
     public void frg_replaceFragment(@NonNull CarlsFragment fragment) {
