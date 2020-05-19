@@ -24,6 +24,13 @@
             android:onClick="toast"
             android:text="Simple Toast" />
 
+     <Button
+            android:id="@+id/app_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toast"
+            android:text="App Toast" />
+
         <Button
             android:id="@+id/warning_toast"
             android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package com.carlsberg_stack.architecture_module_library.base;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -18,6 +19,7 @@ import java.util.Set;
 
 public abstract class CarlsBroadcastActivity extends CarlsActivity implements CarlsBroadcastCommunicator {
 
+    private boolean regitrationAllowed = true;
     private Map<String, BroadcastReceiverModel> carls_broadcastReceiverMap = new HashMap<>();
     private Set<String> carls_onCreateList = new HashSet<>();
     private Set<String> carls_onStartList = new HashSet<>();
@@ -28,11 +30,11 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
 
     protected abstract void carls_indexBroadcastReceiver();
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         carls_indexBroadcastReceiver();
+        regitrationAllowed = false;
         carls_register(carls_onCreateList);
     }
 
@@ -79,6 +81,7 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
             carls_broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, true));
             carls_register(register, broadcastReceiver, intentFilter, name);
             carls_unregister(unregister, name);
+            CarlsLogger.i("Registration Successful");
         }
     }
 
@@ -88,6 +91,7 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
             carls_broadcastReceiverMap.put(name, BroadcastReceiverModel.getInstance(broadcastReceiver, intentFilter, register, unregister, false));
             carls_register(register, broadcastReceiver, intentFilter, name);
             carls_unregister(unregister, name);
+            CarlsLogger.i("Registration Successful");
         }
     }
 
@@ -112,6 +116,9 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
     private boolean carls_canRegister(String name) {
         if (carls_broadcastReceiverMap.containsKey(name)) {
             CarlsLogger.w("Broadcast receiver is already added, Please add action in intenet filter");
+            return false;
+        } else if (!regitrationAllowed) {
+            CarlsLogger.w("Can't Register. Please add broadcast receiver on carls_indexBroadcastReceiver() method");
             return false;
         }
         return true;
@@ -179,5 +186,26 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
 
     public enum UnregisterBroadcastAction {
         CARLS_ON_PAUSE, CARLS_ON_STOP, CARLS_ON_DESTROY
+    }
+
+    @Override
+    public void frg_registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+        carls_registerLocalBroadcastReceiver(broadcastReceiver,intentFilter);
+    }
+
+    @Override
+    public void frg_unRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
+        carls_unRegisterLocalBroadcastReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void frg_registerBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+        carls_registerBroadcastReceiver(broadcastReceiver,intentFilter);
+
+    }
+
+    @Override
+    public void frg_unRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
+        carls_unRegisterBroadcastReceiver(broadcastReceiver);
     }
 }

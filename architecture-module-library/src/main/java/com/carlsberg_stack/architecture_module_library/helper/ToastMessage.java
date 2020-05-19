@@ -51,6 +51,10 @@ public class ToastMessage {
         return Toast.makeText(context, text, Toast.LENGTH_SHORT);
     }
 
+    public static Toast makeAppToast(@NonNull Context context, @NonNull CharSequence text) {
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary_stroke_accent, R.color.colorAccent, text, Toast.LENGTH_SHORT);
+    }
+
     public static Toast makeErrorToast(@NonNull Context context, @NonNull CharSequence text, int duration) {
         return makeText(context, R.drawable.carls_rect_with_corner_fill_trans_stroke_red, R.color.carls_color_red, text, duration);
     }
@@ -73,5 +77,9 @@ public class ToastMessage {
 
     public static Toast makeSimpleToast(@NonNull Context context, @NonNull CharSequence text, int duration) {
         return Toast.makeText(context, text, duration);
+    }
+
+    public static Toast makeAppToast(@NonNull Context context, @NonNull CharSequence text, int duration) {
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary_stroke_accent, R.color.colorAccent, text, duration);
     }
 }
