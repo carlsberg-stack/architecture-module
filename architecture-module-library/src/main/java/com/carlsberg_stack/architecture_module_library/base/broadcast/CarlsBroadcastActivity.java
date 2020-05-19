@@ -1,9 +1,8 @@
-package com.carlsberg_stack.architecture_module_library.base;
+package com.carlsberg_stack.architecture_module_library.base.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;

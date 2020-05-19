@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
 

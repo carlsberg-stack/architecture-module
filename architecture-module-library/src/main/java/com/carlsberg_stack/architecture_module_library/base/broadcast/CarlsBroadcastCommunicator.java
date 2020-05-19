@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base;
+package com.carlsberg_stack.architecture_module_library.base.broadcast;
 
 
 import android.content.BroadcastReceiver;

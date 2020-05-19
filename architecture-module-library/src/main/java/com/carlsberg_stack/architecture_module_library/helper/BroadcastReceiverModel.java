@@ -3,7 +3,7 @@ package com.carlsberg_stack.architecture_module_library.helper;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 
-import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 
 public class BroadcastReceiverModel {
     private boolean local;

@@ -2,7 +2,7 @@ package com.carlsberg_stack.architecture_module_library.pattern.mvp;
 
 import android.os.Bundle;
 
-import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsMvp;
 
 public abstract class CarlsMvpBroadcastActivity<T extends CarlsMvp.BasePresenter> extends CarlsBroadcastActivity implements CarlsMvp.BaseView {

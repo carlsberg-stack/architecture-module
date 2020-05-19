@@ -9,7 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.base.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
 public class MainActivity extends CarlsBroadcastActivity implements MainFragmentInterface {

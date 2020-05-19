@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.CarlsFragmentActivity;
+import com.carlsberg_stack.architecture_module_library.base.fragment.CarlsFragmentActivity;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
 
 

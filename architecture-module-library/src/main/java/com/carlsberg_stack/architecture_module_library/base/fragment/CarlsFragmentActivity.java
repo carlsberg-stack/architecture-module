@@ -1,9 +1,10 @@
-package com.carlsberg_stack.architecture_module_library.base;
+package com.carlsberg_stack.architecture_module_library.base.fragment;
 
 import androidx.annotation.NonNull;
 
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsDialogFragment;
 import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
+import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
 
 
 public abstract class CarlsFragmentActivity extends CarlsBroadcastActivity implements CarlsFragmentCommunicator {
