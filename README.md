@@ -26,18 +26,42 @@ dependencies {
 
 ### Simple
 ```bash
-public class MainActivity extends BaseActivity {
+public class MainActivity extends CarlsActivity {
     
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
+    }
+    
+ public class MainActivity extends CarlsFragmentActivity {
+    
+    @Override
+    protected int carls_getContainerViewId(int id) {
+    // when you want to add fragment from from any fragment  then you need to provide container id
+        return container_id;
+    }
+   
+    public class MainActivity extends CarlsBroadcastActivity {
+    
+    @Override
+    protected int carls_getContainerViewId(int id) {
+    // when you want to add fragment from from any fragment  then you need to provide container id
+        return container_id;
+    }
+    
+       @Override
+    protected int carls_indexBroadcastReceiver() {
+    	you need to index broadcast receiver here. It automatically add register and unregister.
+	(like below example CARLS_ON_RESUME - where you want to register CARLS_ON_STOP where you want to unregister)
+	                   	 carls_registerBroadcastReceiver(RegisterBroadcastAction.CARLS_ON_RESUME,UnregisterBroadcastAction.CARLS_ON_STOP,
+		       broadcastReceiver, new IntentFilter());
     }
    
    ....
 ```
 ### MVP
 ```bash
-public class MainActivity extends MVPActivity<YourLogic> implements YourView {
+public class MainActivity extends CarlsMvpActivity<YourLogic> or CarlsMvpFragmentActivity<YourLogic> or CarlsMvpBroadcastActivity<YourLogic> implements YourView {
     
     @Override
     protected int getContentView() {
@@ -59,7 +83,7 @@ public class YourPresenter extends MVPImpl<YourView> implements YourLogic {
 ```
 ### MVVM
 ```bash
-public class MainActivity extends MVVMActivity<YourViewModel>{
+public class MainActivity extends CarlsMvvmActivity<YourViewModel> or CarlsMvvmFragmentActivity<YourViewModel> or CarlsMvvmBroadcastActivity<YourViewModel>{
     
     @Override
     protected int getContentView() {
@@ -81,7 +105,14 @@ public class YourViewModel extends BaseViewModel{
 
 ### For Fragment
 ```bash
-public class MainMainFragment extends MVVMFRAGMENT<youemvvm, your interface if you needed[It has to extend base communicator (You can refer example)]> {
+public class MainMainFragment extends MvvmFragment<youemvvm, your interface if you needed[It has to extend my interface (You can refer example)]> {
+
+    @Override
+    protected int getContentView() {
+        return R.layout.fragment_main;
+    }
+    
+    public class MainMainFragment extends MvpFragment<youemvvm, your interface if you needed[It has to extend my interface (You can refer example)]> {
 
     @Override
     protected int getContentView() {
