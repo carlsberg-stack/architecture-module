@@ -5,13 +5,12 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsMvp;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsPreferenceFragment;
+import com.carlsberg_stack.architecture_module_library.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.CarlsMvp;
+import com.carlsberg_stack.architecture_module_library.base.CarlsPreferenceFragment;
 
 
-public abstract class CarlsMvpPreferenceFragment<T extends CarlsMvp.BasePresenter, C extends CarlsCommunicator> extends CarlsPreferenceFragment<C> implements CarlsMvp.BaseView{
+public abstract class CarlsMvpPreferenceFragment<T extends CarlsMvp.BasePresenter, C extends CarlsCommunicator> extends CarlsPreferenceFragment<C> implements CarlsMvp.BaseView {
 
     protected T presenter;
 

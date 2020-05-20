@@ -9,10 +9,11 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.CarlsActivity;
+import com.carlsberg_stack.architecture_module_library.base.fragment.broadcast.CarlsBroadcastActivity;
 import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
-public class MainActivity extends CarlsBroadcastActivity implements MainFragmentInterface {
+public class MainActivity extends CarlsActivity implements MainFragmentInterface {
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -73,8 +74,4 @@ public class MainActivity extends CarlsBroadcastActivity implements MainFragment
         }
     }
 
-    @Override
-    protected void carls_indexBroadcastReceiver() {
-        carls_registerBroadcastReceiver(RegisterBroadcastAction.CARLS_ON_RESUME, UnregisterBroadcastAction.CARLS_ON_STOP, broadcastReceiver, new IntentFilter());
-    }
 }

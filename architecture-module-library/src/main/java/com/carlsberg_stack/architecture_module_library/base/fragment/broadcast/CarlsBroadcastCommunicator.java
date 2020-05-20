@@ -1,12 +1,12 @@
-package com.carlsberg_stack.architecture_module_library.base.broadcast;
+package com.carlsberg_stack.architecture_module_library.base.fragment.broadcast;
 
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.fragment.CarlsFragmentCommunicator;
 
-public interface CarlsBroadcastCommunicator extends CarlsCommunicator {
+public interface CarlsBroadcastCommunicator extends CarlsFragmentCommunicator {
     void frg_registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter);
 
     void frg_unRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver);

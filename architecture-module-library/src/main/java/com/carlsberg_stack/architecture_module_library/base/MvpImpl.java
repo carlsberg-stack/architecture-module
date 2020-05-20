@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base.base;
+package com.carlsberg_stack.architecture_module_library.base;
 
 public abstract class MvpImpl<T extends CarlsMvp.BaseView> implements CarlsMvp.BasePresenter<T> {
 

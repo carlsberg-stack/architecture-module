@@ -5,8 +5,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsFragment;
+import com.carlsberg_stack.architecture_module_library.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.CarlsFragment;
 
 public class MainFragment extends CarlsFragment {
     @Override

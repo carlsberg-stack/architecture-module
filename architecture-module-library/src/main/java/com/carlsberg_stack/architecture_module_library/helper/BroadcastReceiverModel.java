@@ -3,7 +3,7 @@ package com.carlsberg_stack.architecture_module_library.helper;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 
-import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
+import com.carlsberg_stack.architecture_module_library.base.fragment.broadcast.CarlsBroadcastActivity;
 
 public class BroadcastReceiverModel {
     private boolean local;
@@ -12,7 +12,7 @@ public class BroadcastReceiverModel {
     private CarlsBroadcastActivity.RegisterBroadcastAction registerAction;
     private CarlsBroadcastActivity.UnregisterBroadcastAction unRegisterAction;
 
-    private BroadcastReceiverModel(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, CarlsBroadcastActivity.RegisterBroadcastAction registerAction, CarlsBroadcastActivity.UnregisterBroadcastAction unRegisterAction,boolean local) {
+    private BroadcastReceiverModel(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, CarlsBroadcastActivity.RegisterBroadcastAction registerAction, CarlsBroadcastActivity.UnregisterBroadcastAction unRegisterAction, boolean local) {
         this.broadcastReceiver = broadcastReceiver;
         this.intentFilter = intentFilter;
         this.registerAction = registerAction;
@@ -24,8 +24,8 @@ public class BroadcastReceiverModel {
 
     }
 
-    public static BroadcastReceiverModel getInstance(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, CarlsBroadcastActivity.RegisterBroadcastAction registerAction, CarlsBroadcastActivity.UnregisterBroadcastAction unRegisterAction,Boolean local) {
-        return new BroadcastReceiverModel(broadcastReceiver, intentFilter, registerAction, unRegisterAction,local);
+    public static BroadcastReceiverModel getInstance(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter, CarlsBroadcastActivity.RegisterBroadcastAction registerAction, CarlsBroadcastActivity.UnregisterBroadcastAction unRegisterAction, Boolean local) {
+        return new BroadcastReceiverModel(broadcastReceiver, intentFilter, registerAction, unRegisterAction, local);
     }
 
     public BroadcastReceiver getBroadcastReceiver() {

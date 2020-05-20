@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsActivity;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
+import com.carlsberg_stack.architecture_module_library.base.CarlsActivity;
+import com.carlsberg_stack.architecture_module_library.base.CarlsViewModel;
 
 
-public abstract class CarlsMvvmActivity<T extends CarlsViewModel> extends CarlsActivity{
+public abstract class CarlsMvvmActivity<T extends CarlsViewModel> extends CarlsActivity {
 
     protected T mvvm;
 

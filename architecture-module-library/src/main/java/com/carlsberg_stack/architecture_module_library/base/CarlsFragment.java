@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base.base;
+package com.carlsberg_stack.architecture_module_library.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public abstract class CarlsFragment<C extends CarlsCommunicator> extends Fragment {
 
-    protected  C communicator;
+    protected C communicator;
     protected SharedPreferences defaultPreference;
     protected View view;
 

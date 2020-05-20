@@ -6,9 +6,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsDialogFragment;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
+import com.carlsberg_stack.architecture_module_library.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.CarlsDialogFragment;
+import com.carlsberg_stack.architecture_module_library.base.CarlsViewModel;
 
 
 public abstract class CarlsMvvmDialogFragment<T extends CarlsViewModel, C extends CarlsCommunicator> extends CarlsDialogFragment<C> {

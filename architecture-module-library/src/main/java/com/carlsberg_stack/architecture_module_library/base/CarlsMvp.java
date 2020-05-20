@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base.base;
+package com.carlsberg_stack.architecture_module_library.base;
 
 /**
  * Created by kepler on 20/3/18.

@@ -16,7 +16,6 @@ public class ToastMessage {
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.carls_toast, null);
-
         TextView textview = layout.findViewById(R.id.text);
         textview.setText(text);
         textview.setBackgroundResource(background_resource);
@@ -52,9 +51,14 @@ public class ToastMessage {
     }
 
     public static Toast makeAppToast(@NonNull Context context, @NonNull CharSequence text) {
-        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary_stroke_accent, R.color.colorAccent, text, Toast.LENGTH_SHORT);
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary, R.color.colorAccent, text, Toast.LENGTH_SHORT);
     }
 
+    public static Toast makeAppToastInverse(@NonNull Context context, @NonNull CharSequence text) {
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_accent, R.color.colorPrimary, text, Toast.LENGTH_SHORT);
+    }
+
+    /**/
     public static Toast makeErrorToast(@NonNull Context context, @NonNull CharSequence text, int duration) {
         return makeText(context, R.drawable.carls_rect_with_corner_fill_trans_stroke_red, R.color.carls_color_red, text, duration);
     }
@@ -80,6 +84,10 @@ public class ToastMessage {
     }
 
     public static Toast makeAppToast(@NonNull Context context, @NonNull CharSequence text, int duration) {
-        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary_stroke_accent, R.color.colorAccent, text, duration);
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_primary, R.color.colorAccent, text, duration);
+    }
+
+    public static Toast makeAppToastInverse(@NonNull Context context, @NonNull CharSequence text, int duration) {
+        return makeText(context, R.drawable.carls_rect_with_corner_fill_accent, R.color.colorPrimary, text, duration);
     }
 }

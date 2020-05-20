@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base.broadcast;
+package com.carlsberg_stack.architecture_module_library.base.fragment.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsActivity;
+import com.carlsberg_stack.architecture_module_library.base.fragment.CarlsFragmentActivity;
 import com.carlsberg_stack.architecture_module_library.helper.BroadcastReceiverModel;
 import com.carlsberg_stack.architecture_module_library.helper.CarlsLogger;
 
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class CarlsBroadcastActivity extends CarlsActivity implements CarlsBroadcastCommunicator {
+public abstract class CarlsBroadcastActivity extends CarlsFragmentActivity implements CarlsBroadcastCommunicator {
 
     private boolean regitrationAllowed = true;
     private Map<String, BroadcastReceiverModel> carls_broadcastReceiverMap = new HashMap<>();
@@ -189,7 +189,7 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
 
     @Override
     public void frg_registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
-        carls_registerLocalBroadcastReceiver(broadcastReceiver,intentFilter);
+        carls_registerLocalBroadcastReceiver(broadcastReceiver, intentFilter);
     }
 
     @Override
@@ -199,7 +199,7 @@ public abstract class CarlsBroadcastActivity extends CarlsActivity implements Ca
 
     @Override
     public void frg_registerBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
-        carls_registerBroadcastReceiver(broadcastReceiver,intentFilter);
+        carls_registerBroadcastReceiver(broadcastReceiver, intentFilter);
 
     }
 

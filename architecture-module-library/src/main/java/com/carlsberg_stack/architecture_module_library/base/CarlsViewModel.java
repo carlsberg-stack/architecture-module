@@ -1,4 +1,4 @@
-package com.carlsberg_stack.architecture_module_library.base.base;
+package com.carlsberg_stack.architecture_module_library.base;
 
 import android.app.Application;
 

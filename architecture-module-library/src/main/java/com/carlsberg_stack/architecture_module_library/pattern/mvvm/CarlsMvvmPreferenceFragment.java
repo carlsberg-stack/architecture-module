@@ -6,12 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsCommunicator;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsPreferenceFragment;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
+import com.carlsberg_stack.architecture_module_library.base.CarlsCommunicator;
+import com.carlsberg_stack.architecture_module_library.base.CarlsPreferenceFragment;
+import com.carlsberg_stack.architecture_module_library.base.CarlsViewModel;
 
 
-public abstract class CarlsMvvmPreferenceFragment<T extends CarlsViewModel,C extends CarlsCommunicator> extends CarlsPreferenceFragment<C> {
+public abstract class CarlsMvvmPreferenceFragment<T extends CarlsViewModel, C extends CarlsCommunicator> extends CarlsPreferenceFragment<C> {
 
 
     protected T mvvm;

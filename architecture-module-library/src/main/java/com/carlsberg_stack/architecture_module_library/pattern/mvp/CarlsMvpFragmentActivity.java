@@ -2,10 +2,11 @@ package com.carlsberg_stack.architecture_module_library.pattern.mvp;
 
 import android.os.Bundle;
 
-import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsMvp;
+import com.carlsberg_stack.architecture_module_library.base.CarlsMvp;
+import com.carlsberg_stack.architecture_module_library.base.fragment.CarlsFragmentActivity;
+import com.carlsberg_stack.architecture_module_library.base.fragment.broadcast.CarlsBroadcastActivity;
 
-public abstract class CarlsMvpFragmentActivity<T extends CarlsMvp.BasePresenter> extends CarlsBroadcastActivity implements CarlsMvp.BaseView {
+public abstract class CarlsMvpFragmentActivity<T extends CarlsMvp.BasePresenter> extends CarlsFragmentActivity implements CarlsMvp.BaseView {
 
     /**
      * The Presenter attached to this View

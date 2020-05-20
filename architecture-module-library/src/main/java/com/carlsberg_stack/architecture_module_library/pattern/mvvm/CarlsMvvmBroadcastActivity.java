@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.carlsberg_stack.architecture_module_library.base.broadcast.CarlsBroadcastActivity;
-import com.carlsberg_stack.architecture_module_library.base.base.CarlsViewModel;
+import com.carlsberg_stack.architecture_module_library.base.CarlsViewModel;
+import com.carlsberg_stack.architecture_module_library.base.fragment.broadcast.CarlsBroadcastActivity;
 
 
 public abstract class CarlsMvvmBroadcastActivity<T extends CarlsViewModel> extends CarlsBroadcastActivity {
