@@ -38,7 +38,7 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
         defaultPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
-    private void carls_configure() {
+    protected void carls_configure() {
 
     }
 
