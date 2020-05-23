@@ -33,8 +33,8 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         carls_configure();
-        setContentView(getContentView());
-        bindViews();
+        setContentView(carls_getContentView());
+        carls_bindViews();
         defaultPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
@@ -42,9 +42,9 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
 
     }
 
-    protected abstract int getContentView();
+    protected abstract int carls_getContentView();
 
-    protected abstract void bindViews();
+    protected abstract void carls_bindViews();
 
     /*activities*/
     protected void carls_startActivity(Class<? extends CarlsActivity> activityClass) {
