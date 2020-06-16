@@ -19,7 +19,7 @@ Change the app Level build file (Add Dependency)
 
 ```bash
 dependencies {
-	        implementation 'com.github.carlsberg-stack:architecture-module:20.5.22'
+	        implementation 'com.github.carlsberg-stack:util-library:20.5.22'
 	}
 ```
 ## Use Cases
