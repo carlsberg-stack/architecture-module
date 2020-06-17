@@ -22,11 +22,10 @@ import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
 import java.util.List;
 
+import static com.carlsberg_stack.architecture_module_library.helper.CarlsConstant.CARLS_NONE;
+
 
 public abstract class CarlsActivity extends AppCompatActivity implements CarlsCommunicator {
-
-
-    private final static int CARLS_NONE = -1;
     protected SharedPreferences defaultPreference;
 
     @Override
