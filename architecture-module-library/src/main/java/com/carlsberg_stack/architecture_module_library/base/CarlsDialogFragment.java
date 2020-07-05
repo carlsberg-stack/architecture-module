@@ -13,9 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 public abstract class CarlsDialogFragment<T extends CarlsCommunicator> extends DialogFragment {
 
-    protected static final String TAG = CarlsDialogFragment.class.getSimpleName();
     protected T communicator;
-    protected View view;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -26,14 +24,11 @@ public abstract class CarlsDialogFragment<T extends CarlsCommunicator> extends D
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(getContentView(), container, false);
-        bindViews(view);
-        return view;
+        return carls_bindView(inflater, container);
     }
 
-    protected abstract void bindViews(View view);
+    protected abstract View carls_bindView(LayoutInflater inflater, ViewGroup container);
 
-    protected abstract int getContentView();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
