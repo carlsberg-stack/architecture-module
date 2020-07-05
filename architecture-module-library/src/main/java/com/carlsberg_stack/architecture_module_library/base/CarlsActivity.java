@@ -31,17 +31,14 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        carls_configure();
-        setContentView(carls_getContentView());
+        carls_configure(savedInstanceState);
         carls_bindViews();
         defaultPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
-    protected void carls_configure() {
+    protected void carls_configure(@Nullable Bundle savedInstanceState) {
 
     }
-
-    protected abstract int carls_getContentView();
 
     protected abstract void carls_bindViews();
 
