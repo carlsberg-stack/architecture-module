@@ -17,7 +17,6 @@ public abstract class CarlsFragment<C extends CarlsCommunicator> extends Fragmen
 
     protected C communicator;
     protected SharedPreferences defaultPreference;
-    protected View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,14 +42,10 @@ public abstract class CarlsFragment<C extends CarlsCommunicator> extends Fragmen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(getContentView(), container, false);
-        bindViews(view);
-        return view;
+        return carls_bindView(inflater, container);
     }
 
-    protected abstract void bindViews(View view);
-
-    protected abstract int getContentView();
+    protected abstract View carls_bindView(LayoutInflater inflater, ViewGroup container);
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
