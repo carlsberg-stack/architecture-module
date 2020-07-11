@@ -2,13 +2,13 @@ package com.carlsberg_stack.architecture_module_library.pattern.mvvm;
 
 import android.os.Bundle;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.carlsberg_stack.architecture_module_library.base.CarlsActivity;
-import com.carlsberg_stack.architecture_module_library.base.CarlsViewModel;
 
 
-public abstract class CarlsMvvmActivity<T extends CarlsViewModel> extends CarlsActivity {
+public abstract class CarlsMvvmActivity<T extends AndroidViewModel> extends CarlsActivity {
 
     protected T mvvm;
 
@@ -19,7 +19,7 @@ public abstract class CarlsMvvmActivity<T extends CarlsViewModel> extends CarlsA
     }
 
     private T createViewModel() {
-        return ViewModelProviders.of(this).get(createViewModelClass());
+        return new ViewModelProvider(this).get(createViewModelClass());
     }
 
     protected abstract Class<T> createViewModelClass();

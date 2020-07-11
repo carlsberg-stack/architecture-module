@@ -15,22 +15,6 @@ import com.carlsberg_stack.architecture_module_library.helper.ToastMessage;
 
 public class MainActivity extends CarlsActivity implements MainFragmentInterface {
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-        }
-    };
-
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    protected void bindViews() {
-    }
-
 
     @Override
     public void call() {
@@ -40,6 +24,11 @@ public class MainActivity extends CarlsActivity implements MainFragmentInterface
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void carls_bindViews() {
+        setContentView( R.layout.activity_main);
     }
 
     public void toast(View view) {
