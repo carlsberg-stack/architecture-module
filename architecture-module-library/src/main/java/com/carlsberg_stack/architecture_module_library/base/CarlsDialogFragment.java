@@ -24,15 +24,21 @@ public abstract class CarlsDialogFragment<T extends CarlsCommunicator> extends D
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return carls_bindView(inflater, container);
+        return carlsBindView(inflater, container);
     }
 
-    protected abstract View carls_bindView(LayoutInflater inflater, ViewGroup container);
+    protected abstract View carlsBindView(LayoutInflater inflater, ViewGroup container);
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+    protected int getColor(int color) {
+        return getActivity().getColor(color);
+    }
+
+
 
 }

@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.IdRes;
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.carlsberg_stack.architecture_module_library.R;
@@ -31,27 +34,77 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        carls_configure(savedInstanceState);
-        carls_bindViews();
+        carlsConfigure(savedInstanceState);
+        carlsBindViews();
         defaultPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
-    protected void carls_configure(@Nullable Bundle savedInstanceState) {
+
+
+    protected void carlsConfigure(@Nullable Bundle savedInstanceState) {
 
     }
 
-    protected abstract void carls_bindViews();
+    protected abstract void carlsBindViews();
 
     /*activities*/
-    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass) {
-        carls_startActivity(activityClass, null, CARLS_NONE);
+    protected Intent carlsBuildIntent(Class<? extends CarlsActivity> activityClass) {
+        return new Intent(this, activityClass);
     }
 
-    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle) {
-        carls_startActivity(activityClass, bundle, CARLS_NONE);
+    protected void carlsStartActivity(Class<? extends CarlsActivity> activityClass) {
+        carlsStartActivity(activityClass, null, CARLS_NONE);
     }
 
-    protected void carls_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
+    protected void carlsStartActivity(Class<? extends CarlsActivity> activityClass, @Nullable Bundle bundle) {
+        carlsStartActivity(activityClass, bundle, CARLS_NONE);
+    }
+
+    protected void carlsStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, Pair<View, String>[] pairs) {
+        Intent intent = new Intent(this, activityClass);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        if (flags != CARLS_NONE)
+            intent.setFlags(flags);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, pairs);
+        startActivity(intent, options.toBundle());
+    }
+
+    protected void carlsStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, Pair<View, String> pair) {
+        Intent intent = new Intent(this, activityClass);
+        if (flags != CARLS_NONE)
+            intent.setFlags(flags);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, pair);
+        startActivity(intent, options.toBundle());
+    }
+
+    protected void carlsStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, Pair<View, String>[] pairs, int requestCode) {
+        Intent intent = new Intent(this, activityClass);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        if (flags != CARLS_NONE)
+            intent.setFlags(flags);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, pairs);
+        startActivityForResult(intent, requestCode, options.toBundle());
+    }
+
+    protected void carlsStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, Pair<View, String> pair, int requestCode) {
+        Intent intent = new Intent(this, activityClass);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        if (flags != CARLS_NONE)
+            intent.setFlags(flags);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, pair);
+        startActivityForResult(intent, requestCode, options.toBundle());
+    }
+
+    protected void carlsStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
         Intent intent = new Intent(this, activityClass);
         if (flags != CARLS_NONE)
             intent.setFlags(flags);
@@ -60,48 +113,59 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
         startActivity(intent);
     }
 
+    protected void carlsStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, int requestCode) {
+        Intent intent = new Intent(this, activityClass);
+        if (flags != CARLS_NONE)
+            intent.setFlags(flags);
+        if (bundle != null)
+            intent.putExtras(bundle);
+        startActivityForResult(intent,requestCode);
+    }
+
     /*fragments*/
-    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
+    protected void carlsReplaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(containerViewId, fragment).commit();
     }
 
-    protected void carls_replaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
+    protected void carlsReplaceFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
         getSupportFragmentManager().beginTransaction().replace(containerViewId, fragment, tag).addToBackStack(tag).commit();
     }
 
-    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
+    protected void carlsAddFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment, String tag) {
         getSupportFragmentManager().beginTransaction().add(containerViewId, fragment).addToBackStack(tag).commit();
     }
 
-    protected void carls_addFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
+    protected void carlsAddFragment(@IdRes int containerViewId, @NonNull CarlsFragment fragment) {
         getSupportFragmentManager().beginTransaction().add(containerViewId, fragment).commit();
     }
 
-    protected void carls_showDialogFragment(@NonNull CarlsDialogFragment fragment, String tag) {
+    protected void carlsShowDialogFragment(@NonNull CarlsDialogFragment fragment, String tag) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(tag);
         fragment.show(ft, tag);
     }
 
-    protected void carls_showDialogFragment(@NonNull CarlsDialogFragment fragment) {
+    protected void carlsShowDialogFragment(@NonNull CarlsDialogFragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.addToBackStack(fragment.getClass().getName());
         fragment.show(ft, fragment.getClass().getName());
     }
 
     /*without style*/
-    protected void carls_showDialog(boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
-        carls_showDialog(CARLS_NONE, isCancelable, title, message, postiveTextId, positiveListener, negativeTextId, negativeListener);
+    protected void carlsShowDialog(boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+        carlsShowDialog(CARLS_NONE, isCancelable, title, message, postiveTextId, positiveListener, negativeTextId, negativeListener);
     }
-    protected void carls_showDialog(boolean isCancelable, int title, String message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
-        carls_showDialog(CARLS_NONE, isCancelable, title, message, postiveTextId, positiveListener, negativeTextId, negativeListener);
+
+    protected void carlsShowDialog(boolean isCancelable, int title, String message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+        carlsShowDialog(CARLS_NONE, isCancelable, title, message, postiveTextId, positiveListener, negativeTextId, negativeListener);
     }
 
     /*with style*/
-    protected void carls_showDialog(int style, boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
-        carls_showDialog(style, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
+    protected void carlsShowDialog(int style, boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+        carlsShowDialog(style, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
     }
-    protected void carls_showDialog(int style, boolean isCancelable, int title, String message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+
+    protected void carlsShowDialog(int style, boolean isCancelable, int title, String message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
         new AlertDialog.Builder(this, style == CARLS_NONE ? R.style.Carls_Appearance_App_Dialog : style)
                 .setCancelable(isCancelable)
                 .setTitle(title == CARLS_NONE ? R.string.carls_alert : title)
@@ -113,88 +177,89 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
 
 
     /*Confirm Dialog*/
-    protected void carls_showConfirmDialog(int message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(int message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog(int message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(int message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog(int style, int message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(int style, int message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog_(int style, int message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog_(int style, int message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog(String message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(String message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog(String message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(String message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog(int style, String message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog(int style, String message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
-    protected void carls_showConfirmDialog_(int style, String message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    protected void carlsShowConfirmDialog_(int style, String message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
     /*alerts*/
-    protected void carls_showAlert(int title, int message) {
-        carls_showDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(int title, int message) {
+        carlsShowDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert(int message) {
-        carls_showDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(int message) {
+        carlsShowDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert(int style, int title, int message) {
-        carls_showDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(int style, int title, int message) {
+        carlsShowDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert_(int style, int message) {
-        carls_showDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
-    }
-    protected void carls_showAlert(int title, String message) {
-        carls_showDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert_(int style, int message) {
+        carlsShowDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert(String message) {
-        carls_showDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(int title, String message) {
+        carlsShowDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert(int style, int title, String message) {
-        carls_showDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(String message) {
+        carlsShowDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
-    protected void carls_showAlert_(int style, String message) {
-        carls_showDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    protected void carlsShowAlert(int style, int title, String message) {
+        carlsShowDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    }
+
+    protected void carlsShowAlert_(int style, String message) {
+        carlsShowDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     /*list dialog*/
-    protected void carls_showListDialog(int items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(CARLS_NONE, true, CARLS_NONE, items, listener);
+    protected void carlsShowListDialog(int items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(CARLS_NONE, true, CARLS_NONE, items, listener);
     }
 
-    protected void carls_showListDialog(int style, int items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, true, CARLS_NONE, items, listener);
+    protected void carlsShowListDialog(int style, int items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, true, CARLS_NONE, items, listener);
     }
 
-    protected <T> void carls_showListDialog(List<T> items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(CARLS_NONE, CARLS_NONE, true, CARLS_NONE, items, listener);
+    protected <T> void carlsShowListDialog(List<T> items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(CARLS_NONE, CARLS_NONE, true, CARLS_NONE, items, listener);
     }
 
-    protected <T> void carls_showListDialog(int style, List<T> items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, CARLS_NONE, true, CARLS_NONE, items, listener);
+    protected <T> void carlsShowListDialog(int style, List<T> items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, CARLS_NONE, true, CARLS_NONE, items, listener);
     }
 
-    protected <T> void carls_showListDialog(int style, int resource, boolean isCancelable, int title, List<T> items, DialogInterface.OnClickListener listener) {
+    protected <T> void carlsShowListDialog(int style, int resource, boolean isCancelable, int title, List<T> items, DialogInterface.OnClickListener listener) {
         final ArrayAdapter<T> arrayAdapter = new ArrayAdapter<>(this, resource == CARLS_NONE ? R.layout.carls_textview : resource, items);
         new AlertDialog.Builder(this, style == CARLS_NONE ? R.style.Carls_Appearance_App_Dialog : style)
                 .setCancelable(isCancelable)
@@ -203,7 +268,7 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
                 .create().show();
     }
 
-    protected void carls_showListDialog(int style, boolean isCancelable, int title, int items, DialogInterface.OnClickListener listener) {
+    protected void carlsShowListDialog(int style, boolean isCancelable, int title, int items, DialogInterface.OnClickListener listener) {
         new AlertDialog.Builder(this, style == CARLS_NONE ? R.style.Carls_Appearance_App_Dialog : style)
                 .setCancelable(isCancelable)
                 .setTitle(title == CARLS_NONE ? R.string.carls_select : title)
@@ -212,13 +277,14 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     }
 
     /*toast*/
-    protected void carls_showToast(String msg) {
+    protected void carlsShowToast(String msg) {
         ToastMessage.makeSimpleToast(getApplicationContext(), msg);
     }
 
-    protected void carls_showToast(int msg) {
-        carls_showToast(getString(msg));
+    protected void carlsShowToast(int msg) {
+        carlsShowToast(getString(msg));
     }
+
 
     /*network connectivity*/
     protected boolean isInternetAvailable() {
@@ -232,28 +298,63 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsActivity> activityClass) {
-        carls_startActivity(activityClass);
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass) {
+        carlsStartActivity(activityClass);
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle) {
-        carls_startActivity(activityClass, bundle);
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle) {
+        carlsStartActivity(activityClass, bundle);
     }
 
     @Override
-    public void frg_startActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
-        carls_startActivity(activityClass, bundle, flags);
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags) {
+        carlsStartActivity(activityClass, bundle, flags);
     }
 
     @Override
-    public void frg_showToast(String msg) {
-        carls_showToast(msg);
+    public void frgStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, int flags, int requestCode) {
+        carlsStartActivityForResult(activityClass, bundle,flags,requestCode);
     }
 
     @Override
-    public void frg_showToast(int msg) {
-        carls_showToast(msg);
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Pair<View, String> pair) {
+        carlsStartActivity(activityClass,null, CARLS_NONE, pair);
+    }
+
+    @Override
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Pair<View, String>[] pair) {
+        carlsStartActivity(activityClass,null, CARLS_NONE, pair);
+    }
+
+    @Override
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, Pair<View, String>[] pair) {
+        carlsStartActivity(activityClass,bundle, CARLS_NONE, pair);
+    }
+
+    @Override
+    public void frgStartActivity(Class<? extends CarlsActivity> activityClass, Bundle bundle, Pair<View, String> pair) {
+        carlsStartActivity(activityClass,bundle, CARLS_NONE, pair);
+    }
+
+    @Override
+    public void frgStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, Pair<View, String> pair, int requestCode) {
+        carlsStartActivityForResult(activityClass,bundle, CARLS_NONE, pair,requestCode);
+    }
+
+    @Override
+    public void frgStartActivityForResult(Class<? extends CarlsActivity> activityClass, Bundle bundle, Pair<View, String>[] pair, int requestCode) {
+        carlsStartActivityForResult(activityClass,bundle, CARLS_NONE, pair,requestCode);
+    }
+
+    @Override
+    public void frgShowToast(String msg) {
+        carlsShowToast(msg);
+    }
+
+    @Override
+    public void frgShowToast(int msg) {
+        carlsShowToast(msg);
     }
 
     @Override
@@ -262,133 +363,133 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     }
 
     @Override
-    public void frg_showListDialog(int items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(items, listener);
+    public void frgShowListDialog(int items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(items, listener);
     }
 
     @Override
-    public void frg_showListDialog(int style, int items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, items, listener);
+    public void frgShowListDialog(int style, int items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, items, listener);
     }
 
     @Override
-    public <T> void frg_showListDialog(List<T> items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(items, listener);
+    public <T> void frgShowListDialog(List<T> items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(items, listener);
     }
 
     @Override
-    public <T> void frg_showListDialog(int style, List<T> items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, items, listener);
+    public <T> void frgShowListDialog(int style, List<T> items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, items, listener);
     }
 
     @Override
-    public <T> void frg_showListDialog(int style, int resource, boolean isCancelable, int title, List<T> items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, resource, isCancelable, title, items, listener);
+    public <T> void frgShowListDialog(int style, int resource, boolean isCancelable, int title, List<T> items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, resource, isCancelable, title, items, listener);
     }
 
     @Override
-    public void frg_showListDialog(int style, boolean isCancelable, int title, int items, DialogInterface.OnClickListener listener) {
-        carls_showListDialog(style, isCancelable, title, items, listener);
+    public void frgShowListDialog(int style, boolean isCancelable, int title, int items, DialogInterface.OnClickListener listener) {
+        carlsShowListDialog(style, isCancelable, title, items, listener);
     }
 
     @Override
-    public void frg_showDialog(boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
-        carls_showDialog(CARLS_NONE, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
+    public void frgShowDialog(boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+        carlsShowDialog(CARLS_NONE, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
     }
 
     @Override
-    public void frg_showDialog(int style, boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
-        carls_showDialog(style, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
+    public void frgShowDialog(int style, boolean isCancelable, int title, int message, int postiveTextId, DialogInterface.OnClickListener positiveListener, int negativeTextId, DialogInterface.OnClickListener negativeListener) {
+        carlsShowDialog(style, isCancelable, title, getString(message), postiveTextId, positiveListener, negativeTextId, negativeListener);
     }
 
     @Override
-    public void frg_showConfirmDialog(int message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(int message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog(int message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(int message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog(int style, int message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(int style, int message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog_(int style, int message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog_(int style, int message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog(String message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(String message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog(String message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(String message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog(int style, String message, int textId, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog(int style, String message, int textId, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, textId, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showConfirmDialog_(int style, String message, DialogInterface.OnClickListener listener) {
-        carls_showDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
+    public void frgShowConfirmDialog_(int style, String message, DialogInterface.OnClickListener listener) {
+        carlsShowDialog(style, false, R.string.carls_confirm, message, R.string.carls_confirm, listener, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(int title, int message) {
-        carls_showDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(int title, int message) {
+        carlsShowDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(int message) {
-        carls_showDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(int message) {
+        carlsShowDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(int style, int title, int message) {
-        carls_showDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(int style, int title, int message) {
+        carlsShowDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert_(int style, int message) {
-        carls_showDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert_(int style, int message) {
+        carlsShowDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(int title, String message) {
-        carls_showDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(int title, String message) {
+        carlsShowDialog(false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(String message) {
-        carls_showDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(String message) {
+        carlsShowDialog(false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert(int style, int title, String message) {
-        carls_showDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert(int style, int title, String message) {
+        carlsShowDialog(style, false, title, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showAlert_(int style, String message) {
-        carls_showDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
+    public void frgShowAlert_(int style, String message) {
+        carlsShowDialog(style, false, R.string.carls_alert, message, R.string.carls_okay, null, R.string.carls_cancel, null);
     }
 
     @Override
-    public void frg_showDialogFragment(@NonNull CarlsDialogFragment fragment, String tag) {
-        carls_showDialogFragment(fragment, tag);
+    public void frgShowDialogFragment(@NonNull CarlsDialogFragment fragment, String tag) {
+        carlsShowDialogFragment(fragment, tag);
     }
 
     @Override
-    public void frg_showDialogFragment(@NonNull CarlsDialogFragment fragment) {
-        carls_showDialogFragment(fragment);
+    public void frgShowDialogFragment(@NonNull CarlsDialogFragment fragment) {
+        carlsShowDialogFragment(fragment);
     }
 
     @Override
@@ -400,4 +501,5 @@ public abstract class CarlsActivity extends AppCompatActivity implements CarlsCo
     public void setFragmentTitle(int title) {
 
     }
+
 }

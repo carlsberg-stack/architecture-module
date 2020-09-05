@@ -7,11 +7,11 @@ import android.content.IntentFilter;
 import com.carlsberg_stack.architecture_module_library.base.fragment.CarlsFragmentCommunicator;
 
 public interface CarlsBroadcastCommunicator extends CarlsFragmentCommunicator {
-    void frg_registerLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter);
+    void frgRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter);
 
-    void frg_unRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver);
+    void frgUnRegisterLocalBroadcastReceiver(BroadcastReceiver broadcastReceiver);
 
-    void frg_registerBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter);
+    void frgRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver, IntentFilter intentFilter);
 
-    void frg_unRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver);
+    void frgUnRegisterBroadcastReceiver(BroadcastReceiver broadcastReceiver);
 }

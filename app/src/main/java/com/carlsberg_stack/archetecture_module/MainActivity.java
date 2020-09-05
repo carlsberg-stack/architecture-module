@@ -27,7 +27,7 @@ public class MainActivity extends CarlsActivity implements MainFragmentInterface
     }
 
     @Override
-    protected void carls_bindViews() {
+    protected void carlsBindViews() {
         setContentView( R.layout.activity_main);
     }
 
@@ -52,13 +52,13 @@ public class MainActivity extends CarlsActivity implements MainFragmentInterface
                 ToastMessage.makeInfoToast(getApplicationContext(), getString(R.string.app_name)).show();
                 break;
             case R.id.show_list:
-                carls_showListDialog(R.array.test, null);
+                carlsShowListDialog(R.array.test, null);
                 break;
             case R.id.show_alert:
-                carls_showAlert(R.string.app_name);
+                carlsShowAlert(R.string.app_name);
                 break;
             case R.id.show_confirm:
-                carls_showConfirmDialog(R.string.app_name, null);
+                carlsShowConfirmDialog(R.string.app_name, null);
                 break;
         }
     }

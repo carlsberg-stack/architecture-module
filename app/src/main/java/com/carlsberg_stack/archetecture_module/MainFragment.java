@@ -12,7 +12,7 @@ import com.carlsberg_stack.architecture_module_library.base.CarlsFragment;
 
 public class MainFragment extends CarlsFragment {
     @Override
-    protected View carls_bindView(LayoutInflater inflater, ViewGroup container) {
+    protected View carlsBindView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.carls_textview,container,false);
     }
 
